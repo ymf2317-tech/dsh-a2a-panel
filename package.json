@@ -1,0 +1,44 @@
+{
+  "name": "dsh-a2a-panel",
+  "version": "0.2.0",
+  "description": "在 DSH 侧边栏直接打开 Agent2API 的原版管理面板：host 侧同源反代整站，前端用 iframe 跑原网页，交互与浏览器里一致，无需直连 http 端口。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "agent2api",
+    "gateway",
+    "reverse-proxy",
+    "iframe"
+  ],
+  "engines": {
+    "dsh": ">=0.2.2-rc.1 <0.3.0-0",
+    "node": ">=22.5.0"
+  },
+  "author": "ymf2317-tech",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    },
+    "manifestVersion": 1
+  }
+}

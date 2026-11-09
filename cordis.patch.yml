@@ -1,0 +1,16 @@
+# dsh-a2a-panel bundle patch
+#
+# apiBase    : Agent2API 网关根地址（host 半侧从本机访问，走 127.0.0.1 即可）
+# gatewayKey : 面板 API 用的网关 Key。Agent2API 的面板接口接受网关 Key
+#              （Authorization: Bearer sk-a2a-...），不需要管理员账号密码。
+#              host 半侧优先读环境变量 A2A_GATEWAY_KEY，其次读这里的值。
+#              仓库里这里保持空字符串；本地要留档就设环境变量，别提交进 git。
+# timeoutMs  : 单次上游请求超时。面板首屏会一口气拉好几个 MB 的 JS，
+#              留 20s 比 8s 稳，避免冷启动时被判超时。
+- insert:
+    - id: a2a-panel
+      name: 'dsh-a2a-panel'
+      config:
+        apiBase: 'http://127.0.0.1:3065'
+        gatewayKey: ''
+        timeoutMs: 20000
