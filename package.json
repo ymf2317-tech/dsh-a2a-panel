@@ -1,6 +1,6 @@
 {
   "name": "dsh-a2a-panel",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "在 DSH 侧边栏直接打开 Agent2API 的原版管理面板：host 侧同源反代整站，前端用 iframe 跑原网页，交互与浏览器里一致，无需直连 http 端口。",
   "type": "module",
   "main": "lib/index.js",

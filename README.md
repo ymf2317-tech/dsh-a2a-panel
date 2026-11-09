@@ -95,6 +95,15 @@ curl -s -D - -o /dev/null http://127.0.0.1:3099/a2a-panel/ui/ | grep -i location
 
 不碰正在运行的 DSH，验证的是同一份 `lib/index.js`。
 
+## 子路径反代约定
+
+host 侧每个请求都带 `X-Forwarded-Prefix: /a2a-panel/ui`。上游 Agent2API 若支持这个头
+（[PR #544](https://github.com/aimod-cc/Agent2API/pull/544)），未登录的 302 会自己带上前缀；
+不支持时由插件改写 `Location` 兜底，两种情况下都不会出现双前缀。
+
+你自己接别的上游时同理：**要么让上游认这个头，要么在反代层改写 `Location` 和 `<base>`**，
+否则「会话过期 → 去登录」这条路会跳出前缀。
+
 ## 已知限制
 
 - 面板升级后若新增了别的绝对路径请求方式（例如 WebSocket、service worker），需要同步扩充 `lib/index.js` 的 `SHIM`。
